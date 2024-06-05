@@ -1,0 +1,70 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Good {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Login {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  goods: [Good!]!
+  good(id: Int!): Good!
+  user(id: Int!): User!
+  login(id: Int!): Login!
+}
+
+type Mutation {
+  createGood(createGoodInput: CreateGoodInput!): Good!
+  updateGood(updateGoodInput: UpdateGoodInput!): Good!
+  removeGood(id: Int!): Good!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+  createLogin(createLoginInput: CreateLoginInput!): Login!
+  updateLogin(updateLoginInput: UpdateLoginInput!): Login!
+  removeLogin(id: Int!): Login!
+}
+
+input CreateGoodInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateGoodInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateLoginInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateLoginInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
