@@ -9,7 +9,16 @@ type Good {
 
 type User {
   """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+
+  """Example field (placeholder)"""
+  name: Int!
+
+  """Example field (placeholder)"""
+  email: Int!
+
+  """Example field (placeholder)"""
+  password: Int!
 }
 
 type Login {
@@ -49,12 +58,24 @@ input UpdateGoodInput {
 
 input CreateUserInput {
   """Example field (placeholder)"""
-  exampleField: Int!
+  name: Int!
+
+  """Example field (placeholder)"""
+  email: Int!
+
+  """Example field (placeholder)"""
+  password: Int!
 }
 
 input UpdateUserInput {
   """Example field (placeholder)"""
-  exampleField: Int
+  name: Int
+
+  """Example field (placeholder)"""
+  email: Int
+
+  """Example field (placeholder)"""
+  password: Int
   id: Int!
 }
 
