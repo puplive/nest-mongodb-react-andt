@@ -8,17 +8,16 @@ type Good {
 }
 
 type User {
-  """Example field (placeholder)"""
-  id: Int!
+  _id: String!
 
   """Example field (placeholder)"""
-  name: Int!
+  name: String!
 
   """Example field (placeholder)"""
-  email: Int!
+  email: String!
 
   """Example field (placeholder)"""
-  password: Int!
+  password: String!
 }
 
 type Login {
@@ -29,17 +28,30 @@ type Login {
 type Query {
   goods: [Good!]!
   good(id: Int!): Good!
-  user(id: Int!): User!
+  findAll(filters: findUserInput): [User!]!
+  findOne(_id: String!): User!
   login(id: Int!): Login!
+}
+
+input findUserInput {
+  """Example field (placeholder)"""
+  name: String
+
+  """Example field (placeholder)"""
+  email: String
+
+  """Example field (placeholder)"""
+  password: String
+  _id: String
 }
 
 type Mutation {
   createGood(createGoodInput: CreateGoodInput!): Good!
   updateGood(updateGoodInput: UpdateGoodInput!): Good!
   removeGood(id: Int!): Good!
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
+  createUser(payload: CreateUserInput!): User!
+  updateUser(payload: UpdateUserInput!): User!
+  removeUser(_id: String!): User!
   createLogin(createLoginInput: CreateLoginInput!): Login!
   updateLogin(updateLoginInput: UpdateLoginInput!): Login!
   removeLogin(id: Int!): Login!
@@ -58,25 +70,25 @@ input UpdateGoodInput {
 
 input CreateUserInput {
   """Example field (placeholder)"""
-  name: Int!
+  name: String!
 
   """Example field (placeholder)"""
-  email: Int!
+  email: String!
 
   """Example field (placeholder)"""
-  password: Int!
+  password: String!
 }
 
 input UpdateUserInput {
   """Example field (placeholder)"""
-  name: Int
+  name: String
 
   """Example field (placeholder)"""
-  email: Int
+  email: String
 
   """Example field (placeholder)"""
-  password: Int
-  id: Int!
+  password: String
+  _id: String!
 }
 
 input CreateLoginInput {

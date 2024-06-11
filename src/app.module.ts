@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { GoodsModule } from './goods/goods.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { LoginModule } from './login/login.module';
 
@@ -15,16 +16,7 @@ import { LoginModule } from './login/login.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'nest',
-      password: '123456',
-      database: 'nest',
-      entities: [],
-      synchronize: true,
-    }),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/nest-exercise'),
     GoodsModule,
     UserModule,
     LoginModule,

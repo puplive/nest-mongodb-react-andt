@@ -1,37 +1,41 @@
 // 服务层
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, Schema as MongooseSchema } from 'mongoose';
+
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
+import { findUserInput } from './dto/find-user.input';
+import { User, UserDocument } from './entities/user.entity';
+
 
 @Injectable()
 export class UserService {
-  // 注入 user 仓库
   constructor(
-    @InjectRepository(User)
-    private readonly userRepo: Repository<User>,
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
 
-  create(createUserInput: CreateUserInput) {
-    const { name, email, password } = createUserInput;
-    return this.userRepo.save({ name, email, password });
+
+  create(payload: CreateUserInput) {
+    const createdUser = new this.userModel(payload);
+    return createdUser.save()
   }
 
-  findAll() {
-    return `This action returns all user`;
+  findAll(filters: findUserInput) {
+    return this.userModel.find({ ...filters }).exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(_id: MongooseSchema.Types.ObjectId) {
+    return this.userModel.findById(_id);
   }
 
-  async update(id: number, updateUserInput: UpdateUserInput) {
-    return await this.userRepo.update({ id }, updateUserInput);
+  update(payload: UpdateUserInput) {
+    return this.userModel
+      .findByIdAndUpdate(payload._id, payload, { new: true })
+      .exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(_id: MongooseSchema.Types.ObjectId) {
+    return this.userModel.findByIdAndDelete(_id).exec();
   }
 }

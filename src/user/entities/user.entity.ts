@@ -1,22 +1,26 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument , Schema as MongooseSchema} from 'mongoose';
+
+export type UserDocument = HydratedDocument<User>;
 
 @ObjectType()
-@Entity()
+@Schema()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  id: number;
+  @Field(() => String)
+  _id: MongooseSchema.Types.ObjectId;
 
-  @Column()
-  @Field(() => Int, { description: 'Example field (placeholder)' })
+  @Prop()
+  @Field(() => String, { description: 'Example field (placeholder)' })
   name: string;
 
-  @Column()
-  @Field(() => Int, { description: 'Example field (placeholder)' })
+  @Prop()
+  @Field(() => String, { description: 'Example field (placeholder)' })
   email: string;
 
-  @Column()
-  @Field(() => Int, { description: 'Example field (placeholder)' })
+  @Prop()
+  @Field(() => String, { description: 'Example field (placeholder)' })
   password: string;
+
 }
+export const UserSchema = SchemaFactory.createForClass(User);
